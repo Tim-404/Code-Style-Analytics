@@ -1,0 +1,104 @@
+body {
+    background-color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ccc;
+    padding: 10px
+}
+
+#intro-container {
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px
+}
+
+#intro-wrapper {
+    width: 50%;
+    display: inline-block
+}
+
+#intro {
+    padding: 0px 10px
+}
+
+#input-wrapper {
+    text-align: right;
+    float: right;
+    width: 50%
+}
+
+#input {
+    border-left: 1px solid #444;
+    padding: 0px 10px
+}
+
+.trim-top-margin {
+    margin-top: 0px
+}
+
+#file-select {
+    width: 100%;
+    margin-bottom: 10px
+}
+
+.file-input {
+    background-color: inherit;
+    border: 1px solid #555;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 15px;
+    color: #ccc;
+    padding: 10px;
+    display: inline-block
+}
+
+.file-input:hover {
+    background-color: #333
+}
+
+#results {
+    width: 100%
+}
+
+.analytics-entry {
+    background-color: rgb(10, 20, 30);
+    border: 1px solid #555;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 10px
+}
+
+.entry-header {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 10px
+}
+
+.analytics-button {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #ccc;
+    width: auto;
+    padding: 10px;
+    transition: 0.3s;
+    font-size: 15px;
+    display: inline-block
+}
+
+.analytics-button:hover {
+    background-color: #333
+}
+
+.analytics-content {
+    width: 100%;
+    display: none
+}
+
+footer {
+    align-self: center;
+    text-align: center;
+    font-size: 60% 
+}

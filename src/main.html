@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>Code Style Analyzer</title>
+        <meta name="description" content="Search program for stray literals in computer code.">
+        <meta name="author" content="Timothy Wu">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <h1>Coding in Style</h1>
+        </header>
+        <div id="intro-container">
+            <div id="intro-wrapper">
+                <div id="intro">
+                    <p class="trim-top-margin">
+                        This website will analyze source code for the following:
+                    </p>
+                    <ul>
+                        <li>Stray Literals (aka "magic numbers")</li>
+                        <li>Indentation Consistency</li>
+                        <li>Vague Variable Names</li>
+                    </ul>
+                    <p>
+                        Supported languages include:
+                    </p>
+                    <!--Here is the list of all the languages that the program supports.-->
+                    <ul>
+                        <li>Java</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="input-wrapper">
+                <div id="input">
+                    <p class="trim-top-margin">Submit the source code and run the program.</p>
+                    <div id="file-select">
+                        <label id="selection-label" class="file-input" for="codefiles">
+                            <input style="display:none" type="file" id="codefiles" oninput="countFiles(this)" multiple>
+                            Choose Files
+                        </label>
+                    </div>
+                    <button class="file-input" onclick="processFiles()">Scan</button>
+                    <script src="process-files.js"></script>
+                </div>
+            </div>
+        </div>
+        <div id="results">
+        </div>
+        <footer>
+            <p>
+                This stray literal finder was made to assist with grading code style.
+                Avoid completely depending on this program as a rubric.
+                It is up to the grader to cross-check the results with the student's source code.
+            </p>
+        </footer>
+    </body>
+</html>
