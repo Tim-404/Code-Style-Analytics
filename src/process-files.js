@@ -27,20 +27,30 @@ function processFiles() {
 
         const analyticsContainer = document.createElement("div");
         entryContainer.appendChild(analyticsContainer);
-        analyticsContainer.appendChild(makeAnalyticsButton("Stray Literals"));
-        analyticsContainer.appendChild(makeAnalyticsButton("Indentation"));
-        analyticsContainer.appendChild(makeAnalyticsButton("Variable Names"));
-        analyticsContainer.appendChild(makeAnalyticsSection(files[i].name + "-sl"));
-        analyticsContainer.appendChild(makeAnalyticsSection(files[i].name + "-i"));
-        analyticsContainer.appendChild(makeAnalyticsSection(files[i].name + "-vn"));
+        const slSect = makeAnalyticsSection(files[i].name + "-sl");
+        const inSect = makeAnalyticsSection(files[i].name + "-in");
+        const vnSect = makeAnalyticsSection(files[i].name + "-vn");
+        const slBtn = makeAnalyticsButton("Stray Literals", slSect);
+        const inBtn = makeAnalyticsButton("Indentation", inSect);
+        const vnBtn = makeAnalyticsButton("Variable Names", vnSect);
+        analyticsContainer.appendChild(slBtn);
+        analyticsContainer.appendChild(inBtn);
+        analyticsContainer.appendChild(vnBtn);
+        analyticsContainer.appendChild(slSect);
+        analyticsContainer.appendChild(inSect);
+        analyticsContainer.appendChild(vnSect);
+
+        const script = document.createElement("script");
+        script.src = "analytics-dropdowns.js";
     }
 }
 
-function makeAnalyticsButton(sectionName) {
+function makeAnalyticsButton(sectionName, sect, className="btn analytics-btn") {
     const button = document.createElement("button");
     button.appendChild(document.createTextNode(sectionName));
-    button.className = "analytics-button";
-    button.onclick = "showAnalytics()";
+    button.className = className;
+    button.sect = sect;
+    button.addEventListener("click", showAnalytics);
     return button;
 }
 

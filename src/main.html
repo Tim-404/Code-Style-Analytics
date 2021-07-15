@@ -34,18 +34,19 @@
                 <div id="input">
                     <p class="trim-top-margin">Submit the source code and run the program.</p>
                     <div id="file-select">
-                        <label id="selection-label" class="file-input" for="codefiles">
+                        <label class="btn" id="selection-label" for="codefiles">
                             <input style="display:none" type="file" id="codefiles" oninput="countFiles(this)" multiple>
                             Choose Files
                         </label>
                     </div>
-                    <button class="file-input" onclick="processFiles()">Scan</button>
+                    <button class="btn" id="scan-btn" onclick="processFiles()">Scan</button>
                     <script src="process-files.js"></script>
                 </div>
             </div>
         </div>
         <div id="results">
         </div>
+        <script src="analytics-dropdowns.js"></script>
         <footer>
             <p>
                 This stray literal finder was made to assist with grading code style.

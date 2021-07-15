@@ -1,0 +1,56 @@
+.btn {
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #ccc;
+    display: inline-block
+}
+
+#selection-label {
+    background-color: inherit;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#selection-label:hover {
+    background-color: rgb(20, 0, 60)
+}
+
+#scan-btn {
+    background-color: rgb(65, 170, 15);
+    border: none;
+    border-radius: 5px;
+    color: #ddd;
+    font-size: 15px;
+    padding: 10px;
+}
+
+#scan-btn:hover {
+    background-color: rgb(100, 255, 0);
+    color: #eee
+}
+
+.analytics-btn {
+    transition: none;
+    background-color: inherit;
+    border: none;
+    border-bottom: 2px solid transparent;
+    width: auto;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.analytics-btn:hover {
+    border-bottom: 2px solid #777
+}
+
+.analytics-btn.active {
+    border-bottom: 2px solid rgb(65, 170, 15);
+    color: #eee
+}
+
+.analytics-btn.active:hover {
+    border-bottom: 2px solid rgb(100, 255, 0)
+}
