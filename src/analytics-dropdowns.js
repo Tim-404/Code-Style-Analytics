@@ -3,28 +3,31 @@ function showAnalytics(event) {
     let activeButtonClass = "btn analytics-btn active";
 
     if (btn.className == activeButtonClass) {
-        btn.sect.style.display = "none";
+        btn.sect.classList.remove("active");
         btn.parentNode.replaceChild(makeAnalyticsButton(btn.innerHTML, btn.sect), btn);
     }
     else {
         let elems = btn.parentNode.childNodes;
+        let delayDropdown = false;
         
         for (let i = 0; i < elems.length; ++i) {
             if (elems[i].className == activeButtonClass) {
-                elems[i].sect.style.display = "none";
+                delayDropdown = true;
+                elems[i].sect.classList.remove("active");
                 elems[i].parentNode.replaceChild(makeAnalyticsButton(elems[i].innerHTML, elems[i].sect), elems[i]);
             }
         }
         
-        btn.sect.style.display = "block";
-        btn.parentNode.replaceChild(makeAnalyticsButton(btn.innerHTML, btn.sect, activeButtonClass), btn);
+        if (delayDropdown) {
+            setTimeout(function() {dropDown(btn, activeButtonClass)}, 200);
+        }
+        else {
+            dropDown(btn, activeButtonClass);
+        }
     }
 }
 
-function animateDropdown(sect) {
-
-}
-
-function animateDrawup(sect) {
-
+function dropDown(btn, activeButtonClass) {
+    btn.sect.classList.add("active");
+    btn.parentNode.replaceChild(makeAnalyticsButton(btn.innerHTML, btn.sect, activeButtonClass), btn);
 }

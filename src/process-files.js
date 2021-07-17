@@ -23,22 +23,27 @@ function processFiles() {
         const entryNameContainer = document.createElement("h2");
         entryNameContainer.appendChild(document.createTextNode(files[i].name));
         entryNameContainer.className = "entry-header";
-        entryContainer.appendChild(entryNameContainer);
+        const entryHeader = document.createElement("div");
+        entryHeader.appendChild(entryNameContainer)
+        entryContainer.appendChild(entryHeader);
+        entryHeader.style.borderBottom = "1px solid #555";
+        entryHeader.style.marginBottom = "-1px";
 
         const analyticsContainer = document.createElement("div");
-        entryContainer.appendChild(analyticsContainer);
         const slSect = makeAnalyticsSection(files[i].name + "-sl");
         const inSect = makeAnalyticsSection(files[i].name + "-in");
         const vnSect = makeAnalyticsSection(files[i].name + "-vn");
         const slBtn = makeAnalyticsButton("Stray Literals", slSect);
         const inBtn = makeAnalyticsButton("Indentation", inSect);
         const vnBtn = makeAnalyticsButton("Variable Names", vnSect);
-        analyticsContainer.appendChild(slBtn);
-        analyticsContainer.appendChild(inBtn);
-        analyticsContainer.appendChild(vnBtn);
+        entryHeader.appendChild(slBtn);
+        entryHeader.appendChild(inBtn);
+        entryHeader.appendChild(vnBtn);
         analyticsContainer.appendChild(slSect);
         analyticsContainer.appendChild(inSect);
         analyticsContainer.appendChild(vnSect);
+
+        entryContainer.appendChild(analyticsContainer);
 
         const script = document.createElement("script");
         script.src = "analytics-dropdowns.js";
@@ -59,6 +64,10 @@ function makeAnalyticsSection(name) {
     // TODO: replace filler with the actual analytics
     analytics.className = "analytics-content";
     analytics.id = name;
-    analytics.appendChild(document.createTextNode("filler for " + name));
+    const textContainer = document.createElement("div");
+    const text = document.createTextNode("filler for " + name);
+    textContainer.style.padding = "10px";
+    textContainer.appendChild(text);
+    analytics.appendChild(textContainer);
     return analytics;
 }
