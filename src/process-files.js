@@ -30,18 +30,13 @@ function processFiles() {
         entryHeader.style.marginBottom = "-1px";
 
         const analyticsContainer = document.createElement("div");
-        const slSect = makeAnalyticsSection(files[i].name + "-sl");
-        const inSect = makeAnalyticsSection(files[i].name + "-in");
-        const vnSect = makeAnalyticsSection(files[i].name + "-vn");
-        const slBtn = makeAnalyticsButton("Stray Literals", slSect);
-        const inBtn = makeAnalyticsButton("Indentation", inSect);
-        const vnBtn = makeAnalyticsButton("Variable Names", vnSect);
+        analyticsContainer.className = "analytics-content";
+        const slBtn = makeAnalyticsButton("Stray Literals", analyticsContainer, findStrayLiterals(files[i]));
+        const inBtn = makeAnalyticsButton("Indentation", analyticsContainer, findIndentation(files[i]));
+        const vnBtn = makeAnalyticsButton("Variable Names", analyticsContainer, findVarNames(files[i]));
         entryHeader.appendChild(slBtn);
         entryHeader.appendChild(inBtn);
         entryHeader.appendChild(vnBtn);
-        analyticsContainer.appendChild(slSect);
-        analyticsContainer.appendChild(inSect);
-        analyticsContainer.appendChild(vnSect);
 
         entryContainer.appendChild(analyticsContainer);
 
@@ -50,24 +45,33 @@ function processFiles() {
     }
 }
 
-function makeAnalyticsButton(sectionName, sect, className="btn analytics-btn") {
+function makeAnalyticsButton(sectionName, sect, sectContent, className="btn analytics-btn") {
     const button = document.createElement("button");
     button.appendChild(document.createTextNode(sectionName));
     button.className = className;
     button.sect = sect;
+    button.sectContent = sectContent;
     button.addEventListener("click", showAnalytics);
     return button;
 }
 
-function makeAnalyticsSection(name) {
-    const analytics = document.createElement("div");
-    // TODO: replace filler with the actual analytics
-    analytics.className = "analytics-content";
-    analytics.id = name;
-    const textContainer = document.createElement("div");
-    const text = document.createTextNode("filler for " + name);
-    textContainer.style.padding = "10px";
-    textContainer.appendChild(text);
-    analytics.appendChild(textContainer);
-    return analytics;
+function findStrayLiterals(file) {
+    const container = document.createElement("div");
+    container.appendChild(document.createTextNode("filler for " + file.name + "-sl"));
+    container.style.padding = "10px";
+    return container;
+}
+
+function findIndentation(file) {
+    const container = document.createElement("div");
+    container.appendChild(document.createTextNode("filler for " + file.name + "-in"));
+    container.style.padding = "10px";
+    return container;
+}
+
+function findVarNames(file) {
+    const container = document.createElement("div");
+    container.appendChild(document.createTextNode("filler for " + file.name + "-vn"));
+    container.style.padding = "10px";
+    return container;
 }
