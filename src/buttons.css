@@ -3,7 +3,7 @@
     cursor: pointer;
     transition: 0.3s;
     color: #ccc;
-    display: inline-block
+    display: inline-block;
 }
 
 #selection-label {
@@ -15,7 +15,7 @@
 }
 
 #selection-label:hover {
-    background-color: rgb(20, 0, 60)
+    background-color: rgb(20, 0, 60);
 }
 
 #scan-btn {
@@ -29,7 +29,7 @@
 
 #scan-btn:hover {
     background-color: rgb(50, 200, 0);
-    color: #eee
+    color: #eee;
 }
 
 .analytics-btn {
@@ -43,14 +43,14 @@
 }
 
 .analytics-btn:hover {
-    border-bottom: 2px solid #555
+    border-bottom: 2px solid #555;
 }
 
 .analytics-btn.active {
     border-bottom: 2px solid rgb(65, 170, 15);
-    color: #eee
+    color: #eee;
 }
 
 .analytics-btn.active:hover {
-    border-bottom: 2px solid rgb(100, 255, 0)
+    border-bottom: 2px solid rgb(100, 255, 0);
 }

@@ -1,3 +1,7 @@
+/**
+ * Counts the number of files attached to the file input.
+ * @param {HTMLInputElement} elem the file input
+ */
 function countFiles(elem) {
     const label = elem.parentNode;
     const numFiles = elem.files.length;
@@ -6,6 +10,10 @@ function countFiles(elem) {
     label.appendChild(document.createTextNode(numFiles + labelSuffix));
 }
 
+/**
+ * Creates a div element for each file which contains the filename and options for code analytics,
+ * including stray literal search, indentation checking, and variable name lists.
+ */
 function processFiles() {
     const files = document.getElementById("codefiles").files;
     if (files.length == 0) return;
@@ -39,12 +47,18 @@ function processFiles() {
         entryHeader.appendChild(vnBtn);
 
         entryContainer.appendChild(analyticsContainer);
-
-        const script = document.createElement("script");
-        script.src = "analytics-dropdowns.js";
     }
 }
 
+/**
+ * Creates a button with a two div elements attached. One references the space for the code analysis.
+ * The other references the content of the analysis.
+ * @param {string} sectionName the name of the code analysis
+ * @param {HTMLDivElement} sect the attached analysis space
+ * @param {HTMLDivElement} sectContent  the attached analysis content
+ * @param {string} className the class of the button
+ * @returns the button that will open/close the attached code analysis
+ */
 function makeAnalyticsButton(sectionName, sect, sectContent, className="btn analytics-btn") {
     const button = document.createElement("button");
     button.appendChild(document.createTextNode(sectionName));
@@ -55,6 +69,11 @@ function makeAnalyticsButton(sectionName, sect, sectContent, className="btn anal
     return button;
 }
 
+/**
+ * Stores the stray literal analysis of the code inside a div element.
+ * @param {File} file the source code
+ * @returns a div element with a stray literal analysis of the code
+ */
 function findStrayLiterals(file) {
     const container = document.createElement("div");
     container.appendChild(document.createTextNode("filler for " + file.name + "-sl"));
@@ -62,6 +81,11 @@ function findStrayLiterals(file) {
     return container;
 }
 
+/**
+ * Stores the indentation analysis of the code inside a div element.
+ * @param {File} file the source code
+ * @returns a div element with an indentation analysis of the code
+ */
 function findIndentation(file) {
     const container = document.createElement("div");
     container.appendChild(document.createTextNode("filler for " + file.name + "-in"));
@@ -69,6 +93,11 @@ function findIndentation(file) {
     return container;
 }
 
+/**
+ * Stores a list of variable names in the code inside a div element.
+ * @param {File} file the source code
+ * @returns a div element with a list of the variable names in the code
+ */
 function findVarNames(file) {
     const container = document.createElement("div");
     container.appendChild(document.createTextNode("filler for " + file.name + "-vn"));
