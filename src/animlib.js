@@ -58,6 +58,7 @@ function animate({timing, draw, duration}, idHolder) {
  * @param {AnimationIdHolder} idHolder - The object to store the id of the animation.
  */
 function animateMany(anims, idHolder) {
+
     let start = performance.now();
     let curr = 0;
 
@@ -69,7 +70,11 @@ function animateMany(anims, idHolder) {
 
         anims[curr].draw(progress);
 
-        if (timeFraction < 1 || ++curr < anims.length) {
+        if (timeFraction < 1) {
+            idHolder.id = requestAnimationFrame(animate);
+        }
+        else if (++curr < anims.length) {
+            start = performance.now();
             idHolder.id = requestAnimationFrame(animate);
         }
         else {
