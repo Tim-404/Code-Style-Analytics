@@ -1,6 +1,6 @@
 /**
  * Counts the number of files attached to the file input.
- * @param {HTMLInputElement} elem the file input
+ * @param {HTMLInputElement} elem - The file input
  */
 function countFiles(elem) {
     const label = elem.parentNode;
@@ -53,11 +53,11 @@ function processFiles() {
 /**
  * Creates a button with a two div elements attached. One references the space for the code analysis.
  * The other references the content of the analysis.
- * @param {string} sectionName the name of the code analysis
- * @param {HTMLDivElement} sect the attached analysis space
- * @param {HTMLDivElement} sectContent  the attached analysis content
- * @param {string} className the class of the button
- * @returns the button that will open/close the attached code analysis
+ * @param {string} sectionName - The name of the code analysis
+ * @param {HTMLDivElement} sect - The attached analysis space
+ * @param {HTMLDivElement} sectContent - The attached analysis content
+ * @param {string} className - The class of the button
+ * @returns The button that will open/close the attached code analysis
  */
 function makeAnalyticsButton(sectionName, sect, sectContent, className="btn analytics-btn") {
     const button = document.createElement("button");
@@ -71,8 +71,8 @@ function makeAnalyticsButton(sectionName, sect, sectContent, className="btn anal
 
 /**
  * Stores the stray literal analysis of the code inside a div element.
- * @param {File} file the source code
- * @returns a div element with a stray literal analysis of the code
+ * @param {File} file - The source code
+ * @returns A div element with a stray literal analysis of the code
  */
 function findStrayLiterals(file) {
     const container = document.createElement("div");
@@ -83,8 +83,8 @@ function findStrayLiterals(file) {
 
 /**
  * Stores the indentation analysis of the code inside a div element.
- * @param {File} file the source code
- * @returns a div element with an indentation analysis of the code
+ * @param {File} file - The source code
+ * @returns A div element with an indentation analysis of the code
  */
 function findIndentation(file) {
     const container = document.createElement("div");
@@ -95,8 +95,8 @@ function findIndentation(file) {
 
 /**
  * Stores a list of variable names in the code inside a div element.
- * @param {File} file the source code
- * @returns a div element with a list of the variable names in the code
+ * @param {File} file - The source code
+ * @returns A div element with a list of the variable names in the code
  */
 function findVarNames(file) {
     const container = document.createElement("div");

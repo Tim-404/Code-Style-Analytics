@@ -1,91 +1,118 @@
 /**
  * Takes a button click event and determines which code analyses to show/hide.
- * @param {Event} event the button click event
+ * @param {Event} event - The button click event
  */
 function showAnalytics(event) {
     const btn = event.target;
     const activeButtonClass = "btn analytics-btn active";
 
-    // TODO: redo this for the revised file entry structure
+    // TODO: add animation cancellations
+
     if (btn.classList.contains("active")) {
         btn.classList.remove("active");
-        closeDropdown(btn.sect);
+        closeDropdown(btn);
     }
     else {
-        let elems = btn.parentNode.childNodes;
-        let delayDropdown = false;
+        const elems = btn.parentNode.childNodes;
+        let changeText = false;
         
         for (let i = 0; i < elems.length; ++i) {
             if (elems[i].className == activeButtonClass) {
-                delayDropdown = true;
+                changeText = true;
                 elems[i].classList.remove("active");
             }
         }
         
         btn.classList.add("active");
-        if (delayDropdown) {
-            adjustDropdown(btn.sect, btn.sectContent);
+        if (changeText) {
+            adjustDropdown(btn);
         }
         else {
-            openDropdown(btn.sect, btn.sectContent);
+            openDropdown(btn);
         }
     }
 }
 
 /**
  * Opens a new section under an analysis entry.
- * @param {HTMLDivElement} sect the analysis space
- * @param {HTMLDivElement} content the analysis content
+ * @param {HTMLButtonElement} btn - The button that holds the section data
  */
-function openDropdown(sect, content) {
-    sect.classList.add("active");
-    sect.appendChild(content);
-    sect.currHeightAnim = animate({
+function openDropdown(btn) {
+    btn.sect.classList.add("active");
+    btn.sect.appendChild(content);
+    animate({
         timing(timeFraction) {
             return reverseTiming(quadratic)(timeFraction);
         },
         draw(progress) {
-            sect.style.height = content.offsetHeight * progress + "px";
+            btn.sect.style.height = btn.content.offsetHeight * progress + "px";
         },
         duration: 200
-    });
+    },
+    btn.sectAnim);
 }
 
 /**
  * Adjusts an existing section under an analysis entry.
- * @param {HTMLDivElement} sect the analysis space
- * @param {HTMLDivElement} content the analysis content
+ * @param {HTMLButtonElement} btn - The button that holds the section data
  */
-function adjustDropdown(sect, content) {
-    sect.replaceChild(content, sect.firstChild);
-    const oldHeight = sect.offsetHeight;
-    const heightDiff = content.offsetHeight - oldHeight;
-    sect.currHeightAnim = animate({
+function adjustDropdown(btn) {
+    // Old text fade out
+    const oldOpacity = btn.content.style.opacity;
+    hideText = new CustomAnimation(
+        linear,
+        (progress) => btn.sect.firstChild.style.opacity = oldOpacity * (1 - progress),
+        200
+    );
+
+    // New text fade in
+    showText = new CustomAnimation(
+        linear,
+        (progress) => btn.sect.firstChilde.style.opacity = progress,
+        200
+    );
+    animate([hideText, showText], btn.textAnim);
+
+    // Switch out text content
+    setTimeout(
+        () => {
+            btn.sect.replaceChild(btn.content, btn.sect.firstChild);
+            btn.sect.firstChild.style.opacity = 0;
+        },
+        200
+    );
+
+    // Animate height of the section
+    const oldHeight = btn.sect.offsetHeight;
+    const heightDiff = btn.content.offsetHeight - oldHeight;
+    animate({
         timing(timeFraction) {
             return reverseTiming(quadratic)(timeFraction);
         },
         draw(progress) {
-            sect.style.height = oldHeight + heightDiff * progress + "px";
+            btn.sect.style.height = oldHeight + heightDiff * progress + "px";
         },
         duration: 200
-    });
+    },
+    btn.sectAnim);
 }
 
 /**
  * Closes an existing section under an analysis entry.
- * @param {HTMLDivElement} sect the analysis space
+ * @param {HTMLButtonElement} btn - The button that holds the section data
  */
-function closeDropdown(sect) {
-    sect.classList.remove("active");
-    sect.removeChild(sect.firstChild);
-    const oldHeight = sect.offsetHeight;
-    sect.currHeightAnim = animate({
+function closeDropdown(btn) {
+    btn.sect.classList.remove("active");
+    btn.sect.removeChild(sect.firstChild);
+    const oldHeight = btn.sect.offsetHeight;
+    animate({
         timing(timeFraction) {
             return reverseTiming(quadratic)(timeFraction);
         },
         draw(progress) {
-            sect.style.height = oldHeight - oldHeight * progress + "px";
+            btn.sect.style.height = oldHeight - oldHeight * progress + "px";
         },
         duration: 200
-    });
+    },
+    btn.sectAnim);
 }
