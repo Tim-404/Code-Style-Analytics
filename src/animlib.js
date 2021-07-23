@@ -20,7 +20,7 @@ class AnimationIdHolder {
      * @constructor Constructs an object that holds the animation id for cancellation.
      * @param {number} id - The animation id for cancelling the rest of the animation.
      */
-    constructor(id) {
+    constructor(id=0) {
         this.id = id;
     }
 }

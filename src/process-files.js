@@ -63,8 +63,12 @@ function makeAnalyticsButton(sectionName, sect, sectContent, className="btn anal
     const button = document.createElement("button");
     button.appendChild(document.createTextNode(sectionName));
     button.className = className;
-    button.sect = sect;
-    button.sectContent = sectContent;
+    button.sectWrapper = {
+        sect: sect,
+        sectContent: sectContent,
+        sectAnim: new AnimationIdHolder(),
+        textAnim: new AnimationIdHolder(),
+    }
     button.addEventListener("click", showAnalytics);
     return button;
 }
@@ -74,9 +78,14 @@ function makeAnalyticsButton(sectionName, sect, sectContent, className="btn anal
  * @param {File} file - The source code
  * @returns A div element with a stray literal analysis of the code
  */
-function findStrayLiterals(file) {
+ function findStrayLiterals(file) {
     const container = document.createElement("div");
-    container.appendChild(document.createTextNode("filler for " + file.name + "-sl"));
+    const list = document.createElement("ul");
+    container.appendChild(list);
+
+    list.appendChild(document.createElement("li"));
+    list.lastChild.appendChild(document.createTextNode("filler for " + file.name + "-sl"));
+
     container.style.padding = "10px";
     return container;
 }
@@ -88,7 +97,16 @@ function findStrayLiterals(file) {
  */
 function findIndentation(file) {
     const container = document.createElement("div");
-    container.appendChild(document.createTextNode("filler for " + file.name + "-in"));
+    const list = document.createElement("ul");
+    container.appendChild(list);
+
+    list.appendChild(document.createElement("li"));
+    list.lastChild.appendChild(document.createTextNode("filler for " + file.name + "-in"));
+    list.appendChild(document.createElement("li"));
+    list.lastChild.appendChild(document.createTextNode("line 2"));
+    list.appendChild(document.createElement("li"));
+    list.lastChild.appendChild(document.createTextNode("line 3"));
+
     container.style.padding = "10px";
     return container;
 }
@@ -100,7 +118,14 @@ function findIndentation(file) {
  */
 function findVarNames(file) {
     const container = document.createElement("div");
-    container.appendChild(document.createTextNode("filler for " + file.name + "-vn"));
+    const list = document.createElement("ul");
+    container.appendChild(list);
+
+    list.appendChild(document.createElement("li"));
+    list.lastChild.appendChild(document.createTextNode("filler for " + file.name + "-vn"));
+    list.appendChild(document.createElement("li"));
+    list.lastChild.appendChild(document.createTextNode("line 2"));
+    
     container.style.padding = "10px";
     return container;
 }
